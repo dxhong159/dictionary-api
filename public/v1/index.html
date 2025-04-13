@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dictionary Lookup</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Dictionary Lookup</h1>
+      <p>Search for definitions, examples, and pronunciations</p>
+    </header>
+    
+    <div class="search-container">
+      <form id="search-form">
+        <input type="text" id="word-input" placeholder="Enter a word..." required>
+        <div class="radio-group">
+          <label>
+            <input type="radio" name="dictionary" value="cambridge" checked>
+            Cambridge
+          </label>
+          <label>
+            <input type="radio" name="dictionary" value="oxford">
+            Oxford
+          </label>
+          <label>
+            <input type="radio" name="dictionary" value="merriam-webster">
+            Merriam-Webster
+          </label>
+          <label>
+            <input type="radio" name="dictionary" value="all">
+            All
+          </label>
+        </div>
+        <button type="submit">Search</button>
+      </form>
+    </div>
+    
+    <div id="loading" class="hidden">
+      <div class="spinner"></div>
+      <p>Looking up the word...</p>
+    </div>
+    
+    <div id="results-container" class="hidden">
+      <div class="tabs">
+        <button class="tab-button active" data-target="cambridge-results">Cambridge</button>
+        <button class="tab-button" data-target="oxford-results">Oxford</button>
+        <button class="tab-button" data-target="merriam-webster-results">Merriam-Webster</button>
+      </div>
+      
+      <div class="tab-content">
+        <div id="cambridge-results" class="tab-panel active"></div>
+        <div id="oxford-results" class="tab-panel"></div>
+        <div id="merriam-webster-results" class="tab-panel"></div>
+      </div>
+    </div>
+    
+    <div id="error-container" class="hidden">
+      <p id="error-message"></p>
+    </div>
+  </div>
+  
+  <script src="app.js"></script>
+</body>
+</html>

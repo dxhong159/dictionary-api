@@ -1,0 +1,1069 @@
+/* Base styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Brand colors for each dictionary */
+  --cambridge-color: #008cc9;
+  --cambridge-light: #e6f4fa;
+  --cambridge-accent: #0ab0ff;
+
+  --oxford-color: #1e2357;
+  --oxford-light: #e6e7ed;
+  --oxford-accent: #3a4198;
+
+  --mw-color: #7b1113;
+  --mw-light: #f9e6e6;
+  --mw-accent: #aa1b1e;
+
+  /* CEFR level colors */
+  --a1-color: #ff4500;
+  --a2-color: #ff8c00;
+  --b1-color: #32cd32;
+  --b2-color: #008000;
+  --c1-color: #4169e1;
+  --c2-color: #000080;
+}
+
+body {
+  font-family: "Noto Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f7f9fc;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 20px 0;
+  border-bottom: 1px solid #eaedf2;
+}
+
+header h1 {
+  color: #2c3e50;
+  margin-bottom: 10px;
+  font-weight: 600;
+  position: relative;
+  display: inline-block;
+}
+
+.version-badge {
+  position: relative;
+  top: -10px;
+  background-color: #3498db;
+  color: white;
+  font-size: 0.5em;
+  padding: 3px 6px;
+  border-radius: 10px;
+  margin-left: 5px;
+  font-weight: normal;
+  vertical-align: super;
+}
+
+header p {
+  color: #7f8c8d;
+}
+
+footer {
+  margin-top: 50px;
+  padding-top: 20px;
+  text-align: center;
+  color: #95a5a6;
+  font-size: 0.9rem;
+  border-top: 1px solid #eaedf2;
+}
+
+footer a {
+  color: #3498db;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* Search form */
+.search-container {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+  margin-bottom: 35px;
+  transition: box-shadow 0.3s ease;
+}
+
+.search-container:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+#search-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: center;
+}
+
+#word-input {
+  flex: 1;
+  min-width: 200px;
+  padding: 12px 15px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#word-input:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+  outline: none;
+}
+
+.radio-group {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin: 10px 0;
+}
+
+.radio-group label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  position: relative;
+  padding-left: 28px;
+  user-select: none;
+}
+
+.radio-group input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.radio-custom {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #fff;
+  border: 2px solid #ddd;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.cambridge-label:hover .radio-custom {
+  border-color: var(--cambridge-color);
+}
+
+.oxford-label:hover .radio-custom {
+  border-color: var(--oxford-color);
+}
+
+.mw-label:hover .radio-custom {
+  border-color: var(--mw-color);
+}
+
+.all-label:hover .radio-custom {
+  border-color: #3498db;
+}
+
+.radio-group input:checked ~ .radio-custom {
+  border-width: 6px;
+}
+
+.cambridge-label input:checked ~ .radio-custom {
+  border-color: var(--cambridge-color);
+}
+
+.oxford-label input:checked ~ .radio-custom {
+  border-color: var(--oxford-color);
+}
+
+.mw-label input:checked ~ .radio-custom {
+  border-color: var(--mw-color);
+}
+
+.all-label input:checked ~ .radio-custom {
+  border-color: #3498db;
+}
+
+button[type="submit"] {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.2s;
+}
+
+button[type="submit"] svg {
+  width: 16px;
+  height: 16px;
+}
+
+button[type="submit"]:hover {
+  background-color: #2980b9;
+}
+
+/* Loading indicator */
+#loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+}
+
+.spinner {
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border-left-color: #3498db;
+  animation: spin 1s linear infinite;
+  margin-bottom: 15px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  margin-bottom: 0;
+  border-bottom: none;
+}
+
+.tab-button {
+  flex: 1;
+  padding: 12px 20px;
+  background-color: #f8f9fa;
+  border: none;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  color: #666;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.tab-button::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: transparent;
+  transition: background-color 0.2s;
+}
+
+.cambridge-tab::after {
+  background-color: var(--cambridge-color);
+  opacity: 0.3;
+}
+
+.oxford-tab::after {
+  background-color: var(--oxford-color);
+  opacity: 0.3;
+}
+
+.mw-tab::after {
+  background-color: var(--mw-color);
+  opacity: 0.3;
+}
+
+.cambridge-tab.active {
+  background-color: white;
+  color: var(--cambridge-color);
+}
+
+.oxford-tab.active {
+  background-color: white;
+  color: var(--oxford-color);
+}
+
+.mw-tab.active {
+  background-color: white;
+  color: var(--mw-color);
+}
+
+.tab-button.active::after {
+  opacity: 1;
+}
+
+.tab-button:hover:not(.active) {
+  background-color: #f1f1f1;
+}
+
+.tab-panel {
+  display: none;
+  background: white;
+  border-radius: 0 0 8px 8px;
+  padding: 25px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+/* Common dictionary styling */
+.word-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+.word-title {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.word-title h2 {
+  color: #2c3e50;
+  font-weight: 600;
+  position: relative;
+  font-family: "Lora", serif;
+}
+
+.word-title h2 .numeric-suffix {
+  font-size: 0.7em;
+  vertical-align: super;
+  font-weight: normal;
+  color: #7f8c8d;
+  margin-left: 2px;
+}
+
+.phonetic {
+  color: #7f8c8d;
+  font-style: italic;
+}
+
+.audio-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.audio-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.audio-play {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.audio-play:active {
+  transform: scale(0.95);
+}
+
+.audio-label {
+  font-size: 12px;
+  color: #7f8c8d;
+}
+
+.dictionary-entry {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+}
+
+.part-of-speech {
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.definition {
+  margin-bottom: 20px;
+  padding-left: 15px;
+}
+
+.definition-text {
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.examples {
+  margin-top: 12px;
+}
+
+.example {
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.synonyms,
+.antonyms {
+  margin-top: 12px;
+}
+
+.synonyms span,
+.antonyms span {
+  font-weight: 500;
+}
+
+.context {
+  margin-bottom: 10px;
+}
+
+.source-label {
+  display: block;
+  margin-top: 20px;
+  text-align: right;
+  font-size: 12px;
+  color: #95a5a6;
+}
+
+.dictionary-logo {
+  height: 24px;
+  margin-left: 15px;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.dictionary-logo:hover {
+  opacity: 1;
+}
+
+/* Error message */
+#error-container {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 15px 20px;
+  border-radius: 8px;
+  margin-top: 20px;
+  border-left: 4px solid #f5c6cb;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+
+  .word-header {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .radio-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .tab-button {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .tab-panel {
+    padding: 15px;
+  }
+}
+
+/* Cambridge Dictionary specific styling */
+.cambridge-dictionary .part-of-speech {
+  color: var(--cambridge-color);
+  background-color: var(--cambridge-light);
+  padding: 5px 10px;
+  border-radius: 4px;
+  display: inline-block;
+  font-weight: 500;
+}
+
+.cambridge-dictionary .definition {
+  position: relative;
+  padding-left: 20px;
+  border-left: 3px solid var(--cambridge-light);
+}
+
+.cambridge-dictionary .definition::before {
+  content: "•";
+  position: absolute;
+  left: 5px;
+  color: var(--cambridge-color);
+  font-weight: bold;
+}
+
+.cambridge-dictionary .audio-play {
+  background-color: var(--cambridge-light);
+  color: var(--cambridge-color);
+}
+
+.cambridge-dictionary .audio-play:hover {
+  background-color: var(--cambridge-color);
+  color: white;
+}
+
+.cefr-badge {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 600;
+  color: white;
+  margin-right: 8px;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
+.cefr-badge.a1 {
+  background-color: var(--a1-color);
+}
+.cefr-badge.a2 {
+  background-color: var(--a2-color);
+}
+.cefr-badge.b1 {
+  background-color: var(--b1-color);
+}
+.cefr-badge.b2 {
+  background-color: var(--b2-color);
+}
+.cefr-badge.c1 {
+  background-color: var(--c1-color);
+}
+.cefr-badge.c2 {
+  background-color: var(--c2-color);
+}
+
+.cambridge-examples {
+  margin-top: 10px;
+  border-left: 3px solid var(--cambridge-color);
+  padding-left: 12px;
+}
+
+.cambridge-example {
+  color: #555;
+  font-style: italic;
+}
+
+.domain-label,
+.register-label {
+  font-size: 12px;
+  color: #666;
+  background-color: #f5f5f5;
+  padding: 1px 5px;
+  border-radius: 3px;
+  margin-right: 5px;
+  display: inline-block;
+}
+
+.region-variation {
+  font-size: 13px;
+  color: #666;
+  margin: 8px 0;
+  background-color: #f9f9f9;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.example-translation {
+  color: #666;
+  margin-top: 5px;
+  font-style: normal;
+  font-size: 13px;
+  padding-left: 10px;
+  border-left: 2px solid #ddd;
+}
+
+.grammar-info {
+  color: #666;
+  margin-bottom: 12px;
+  font-style: italic;
+  background-color: #f9f9f9;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.related-section {
+  margin-top: 25px;
+  padding: 15px;
+  background: #f9f9fc;
+  border-radius: 6px;
+  border-left: 4px solid var(--cambridge-light);
+}
+
+.related-title {
+  color: var(--cambridge-color);
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.related-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.related-list li {
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #eee;
+}
+
+.related-list li:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.related-list a {
+  color: var(--cambridge-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.related-list a:hover {
+  text-decoration: underline;
+}
+
+.quick-definition {
+  color: #666;
+  font-size: 14px;
+}
+
+/* Oxford Dictionary specific styling */
+.oxford-dictionary .part-of-speech {
+  color: var(--oxford-color);
+  font-weight: 600;
+  border-bottom: 2px solid var(--oxford-color);
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+  display: inline-block;
+}
+
+.oxford-dictionary .definition {
+  border-left: 3px solid var(--oxford-light);
+}
+
+.oxford-dictionary .audio-play {
+  background-color: var(--oxford-light);
+  color: var(--oxford-color);
+}
+
+.oxford-dictionary .audio-play:hover {
+  background-color: var(--oxford-color);
+  color: white;
+}
+
+.oxford-pronunciation {
+  margin-bottom: 15px;
+  background-color: var(--oxford-light);
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.pronunciation {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 5px;
+}
+
+.pronunciation:last-child {
+  margin-bottom: 0;
+}
+
+.region-label {
+  font-weight: 600;
+  color: var(--oxford-color);
+  font-size: 13px;
+  min-width: 30px;
+}
+
+.ipa {
+  font-family: "Noto Sans", sans-serif;
+  color: #555;
+  font-style: italic;
+}
+
+.audio-inline {
+  margin-left: 5px;
+}
+
+.etymology {
+  background-color: var(--oxford-light);
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  color: #444;
+  font-style: italic;
+  position: relative;
+}
+
+.etymology::before {
+  content: '"';
+  position: absolute;
+  left: 5px;
+  top: 0;
+  font-size: 24px;
+  color: var(--oxford-color);
+  opacity: 0.3;
+  font-family: Georgia, serif;
+}
+
+.etymology-label {
+  font-weight: 600;
+  font-style: normal;
+  color: var(--oxford-color);
+}
+
+.variant-forms {
+  margin-bottom: 12px;
+}
+
+.variant-label {
+  font-weight: 600;
+  color: var(--oxford-color);
+}
+
+.senses-list {
+  padding-left: 25px;
+  margin: 15px 0;
+}
+
+.senses-list.level-1 {
+  list-style-type: decimal;
+}
+
+.senses-list.level-2 {
+  list-style-type: lower-alpha;
+}
+
+.senses-list.level-3 {
+  list-style-type: lower-roman;
+}
+
+.sense-item {
+  margin-bottom: 15px;
+}
+
+.domains-label,
+.regions-label,
+.registers-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--oxford-color);
+  display: inline-block;
+  margin-right: 5px;
+  background-color: var(--oxford-light);
+  padding: 1px 6px;
+  border-radius: 3px;
+}
+
+.oxford-examples {
+  margin: 10px 0 10px 15px;
+}
+
+.oxford-example {
+  font-style: italic;
+  color: #555;
+  margin-bottom: 8px;
+  padding-left: 10px;
+  border-left: 2px solid var(--oxford-light);
+}
+
+.example-source {
+  font-style: normal;
+  color: #777;
+  font-size: 12px;
+}
+
+/* Merriam-Webster Dictionary specific styling */
+.merriam-webster-dictionary .part-of-speech {
+  color: var(--mw-color);
+  font-weight: 600;
+}
+
+.merriam-webster-dictionary .audio-play {
+  background-color: var(--mw-light);
+  color: var(--mw-color);
+}
+
+.merriam-webster-dictionary .audio-play:hover {
+  background-color: var(--mw-color);
+  color: white;
+}
+
+.mw-entry {
+  position: relative;
+  padding: 20px;
+  margin-bottom: 30px;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #eee;
+}
+
+.homonym-number {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  background: var(--mw-color);
+  color: white;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.mw-pronunciation {
+  margin-bottom: 15px;
+  font-style: italic;
+  background-color: var(--mw-light);
+  padding: 10px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.written-pronunciation {
+  color: #444;
+  font-weight: 500;
+}
+
+.functional-label {
+  display: inline-block;
+  background: #f5f5f5;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 12px;
+}
+
+.mw-etymology {
+  background-color: #f9f5e6;
+  border-left: 3px solid #e8d8a7;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+  border-radius: 4px;
+}
+
+.first-known-use {
+  font-size: 13px;
+  background-color: var(--mw-light);
+  padding: 5px 10px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+.first-known-use span {
+  font-weight: 600;
+  color: var(--mw-color);
+}
+
+.mw-pos {
+  color: var(--mw-color);
+  font-weight: 600;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--mw-light);
+  padding-bottom: 5px;
+  display: inline-block;
+}
+
+.inflections {
+  font-style: italic;
+  color: #555;
+  margin-bottom: 15px;
+  background-color: #f9f9f9;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.definitions-container {
+  margin-left: 10px;
+}
+
+.definitions-list {
+  list-style-position: outside;
+  padding-left: 25px;
+}
+
+.sense-number {
+  font-weight: 600;
+  color: var(--mw-color);
+  margin-right: 5px;
+}
+
+.definition-labels {
+  margin-bottom: 8px;
+}
+
+.label-subject,
+.label-register,
+.label-grammar {
+  display: inline-block;
+  margin-right: 5px;
+  padding: 1px 5px;
+  font-size: 12px;
+  border-radius: 3px;
+  color: white;
+}
+
+.label-subject {
+  background-color: #444;
+}
+
+.label-register {
+  background-color: #6a8759;
+}
+
+.label-grammar {
+  background-color: #9876aa;
+}
+
+.usage-notes {
+  background-color: #f5f5f5;
+  padding: 10px;
+  border-radius: 4px;
+  margin: 10px 0;
+  border-left: 3px solid #ddd;
+}
+
+.mw-examples {
+  margin: 10px 0 10px 15px;
+  border-left: 3px solid var(--mw-light);
+  padding-left: 12px;
+}
+
+.example-attribution {
+  font-style: normal;
+  color: #777;
+  font-size: 12px;
+}
+
+.mw-synonyms,
+.mw-antonyms {
+  margin: 8px 0;
+}
+
+.mw-synonyms span {
+  color: #2980b9;
+  font-weight: 500;
+}
+
+.mw-antonyms span {
+  color: #c0392b;
+  font-weight: 500;
+}
+
+.phrase-item {
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.phrase-text {
+  font-weight: 600;
+  color: var(--mw-color);
+}
+
+.phrase-definition {
+  margin: 5px 0;
+}
+
+.phrase-example {
+  font-style: italic;
+  color: #666;
+  padding-left: 10px;
+  border-left: 2px solid #ddd;
+}
+
+.word-forms {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #555;
+  background-color: #f9f9f9;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.forms-label {
+  font-weight: 600;
+  color: #555;
+}
+
+.other-forms-container {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+}
+
+.other-forms-title {
+  font-size: 16px;
+  color: var(--mw-color);
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.other-forms-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.other-forms-list li {
+  margin-bottom: 8px;
+}
+
+.other-forms-list strong {
+  color: var(--mw-color);
+}
+
+/* Utility classes */
+.hidden {
+  display: none;
+}
+
+.badge {
+  display: inline-block;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 600;
+}
